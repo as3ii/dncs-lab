@@ -1,0 +1,18 @@
+FirstName: Lorenzo
+LastName: Debertolis
+MatriculationNumber: 193514
+AcademicYear: 2019-2020
+GitHubUrl: https://github.com/as3ii/dncs-lab
+Subnets:
+  HostsA:
+    RequiredAddresses: 108
+    SubnetAddress: YourHostsASubnetAddress
+    SubnetPrefixLength: YourHostsASubnetPrefixLength
+  HostsB:
+    RequiredAddresses: 502
+    SubnetAddress: YourHostsBSubnetAddress
+    SubnetPrefixLength: YourHostsBSubnetPrefixLength
+  Hub:
+    RequiredAddresses: 418
+    SubnetAddress: YourHubSubnetAddress
+    SubnetPrefixLength: YourHubSubnetPrefixLength
