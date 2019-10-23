@@ -1,10 +1,6 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
-# All Vagrant configuration is done below. The "2" in Vagrant.configure
-# configures the configuration version (we support older styles for
-# backwards compatibility). Please don't change it unless you know what
-# you're doing.
 Vagrant.configure("2") do |config|
   config.vm.box_check_update = false
   config.vm.provider "virtualbox" do |vb|
@@ -23,7 +19,10 @@ Vagrant.configure("2") do |config|
     router1.vm.network "private_network", virtualbox__intnet: "broadcast_router-inter", auto_config: false
     router1.vm.provision "shell", path: "common.sh"
     router1.vm.provider "virtualbox" do |vb|
+      vb.name = "router-1"
+      vb.cpus = 1
       vb.memory = 256
+      vb.gui = false
     end
   end
   config.vm.define "router-2" do |router2|
@@ -33,7 +32,10 @@ Vagrant.configure("2") do |config|
     router2.vm.network "private_network", virtualbox__intnet: "broadcast_router-inter", auto_config: false
     router2.vm.provision "shell", path: "common.sh"
     router2.vm.provider "virtualbox" do |vb|
+      vb.name = "router-2"
+      vb.cpus = 1
       vb.memory = 256
+      vb.gui = false
     end
   end
   config.vm.define "switch" do |switch|
@@ -44,7 +46,10 @@ Vagrant.configure("2") do |config|
     switch.vm.network "private_network", virtualbox__intnet: "broadcast_host_b", auto_config: false
     switch.vm.provision "shell", path: "switch.sh"
     switch.vm.provider "virtualbox" do |vb|
+      vb.name = "switch"
+      vb.cpus = 1
       vb.memory = 256
+      vb.gui = false
     end
   end
   config.vm.define "host-a" do |hosta|
@@ -53,7 +58,10 @@ Vagrant.configure("2") do |config|
     hosta.vm.network "private_network", virtualbox__intnet: "broadcast_host_a", auto_config: false
     hosta.vm.provision "shell", path: "common.sh"
     hosta.vm.provider "virtualbox" do |vb|
+      vb.name = "host-a"
+      vb.cpus = 1
       vb.memory = 256
+      vb.gui = false
     end
   end
   config.vm.define "host-b" do |hostb|
@@ -62,7 +70,10 @@ Vagrant.configure("2") do |config|
     hostb.vm.network "private_network", virtualbox__intnet: "broadcast_host_b", auto_config: false
     hostb.vm.provision "shell", path: "common.sh"
     hostb.vm.provider "virtualbox" do |vb|
+      vb.name = "host-b"
+      vb.cpus = 1
       vb.memory = 256
+      vb.gui = false
     end
   end
   config.vm.define "host-c" do |hostc|
@@ -71,7 +82,10 @@ Vagrant.configure("2") do |config|
     hostc.vm.network "private_network", virtualbox__intnet: "broadcast_router-south-2", auto_config: false
     hostc.vm.provision "shell", path: "common.sh"
     hostc.vm.provider "virtualbox" do |vb|
-      vb.memory = 256
+      vb.name = "host-c"
+      vb.cpus = 1
+      vb.memory = 512
+      vb.gui = false
     end
   end
 end
