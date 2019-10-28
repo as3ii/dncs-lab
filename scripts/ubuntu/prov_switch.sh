@@ -12,9 +12,9 @@ ovs-vsctl add-br switch
 
 # add phisical interface
 
-ovs-vsctl add-port switch enp0s8            # trunk link to router-1
-ovs-vsctl add-port switch enp0s9 #tag=10     # tagget subnet Hosts-A
-ovs-vsctl add-port switch enp0s10 #tag=20    # tegged subnet Hosts-B
+ovs-vsctl add-port switch enp0s8            # link to router-1
+ovs-vsctl add-port switch enp0s9            # link to subnet Hosts-A
+ovs-vsctl add-port switch enp0s10           # link to subnet Hosts-B
 
 # enable interfaces and virtual switch
 ip link set enp0s8 up   # router-sout-1
