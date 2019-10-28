@@ -1,2 +1,4 @@
 export DEBIAN_FRONTEND=noninteractive
-# Startup commands go here
+
+# exec the right provisioning script
+/vagrant/scripts/ubuntu/prov_"$(uname -n)".sh

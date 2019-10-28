@@ -1,49 +1,93 @@
 # DNCS-LAB
 
 This repository contains the Vagrant files required to run the virtual lab environment used in the DNCS course.
+
+# Network Map
 ```
 
 
-        +-----------------------------------------------------+
-        |                                                     |
-        |                                                     |eth0
-        +--+--+                +------------+             +------------+
-        |     |                |            |             |            |
-        |     |            eth0|            |eth2     eth2|            |
-        |     +----------------+  router-1  +-------------+  router-2  |
-        |     |                |            |             |            |
-        |     |                |            |             |            |
-        |  M  |                +------------+             +------------+
-        |  A  |                      |eth1                       |eth1
-        |  N  |                      |                           |
-        |  A  |                      |                           |
-        |  G  |                      |                     +-----+----+
-        |  E  |                      |eth1                 |          |
-        |  M  |            +-------------------+           |          |
-        |  E  |        eth0|                   |           |  host-c  |
-        |  N  +------------+      SWITCH       |           |          |
-        |  T  |            |                   |           |          |
-        |     |            +-------------------+           +----------+
-        |  V  |               |eth2         |eth3                |eth0
-        |  A  |               |             |                    |
-        |  G  |               |             |                    |
-        |  R  |               |eth1         |eth1                |
-        |  A  |        +----------+     +----------+             |
-        |  N  |        |          |     |          |             |
-        |  T  |    eth0|          |     |          |             |
-        |     +--------+  host-a  |     |  host-b  |             |
-        |     |        |          |     |          |             |
-        |     |        |          |     |          |             |
-        ++-+--+        +----------+     +----------+             |
-        | |                              |eth0                   |
-        | |                              |                       |
-        | +------------------------------+                       |
-        |                                                        |
-        |                                                        |
-        +--------------------------------------------------------+
+        +---------------------------------------------------------+
+        |                                                         |
+        |                                                         |eno0s3
+        +--+--+                +------------+               +------------+
+        |     |                |            |               |            |
+        |     |          enp0s3|            |enp0s9   enp0s9|            |
+        |     +----------------+  router-1  +---------------+  router-2  |
+        |     |                |            |               |            |
+        |     |                |            |               |            |
+        |  M  |                +------------+               +------------+
+        |  A  |                      |enp0s8                       |enp0s8
+        |  N  |                      |                             |
+        |  A  |                      |                             |enp0s8
+        |  G  |                      |                       +-----+----+
+        |  E  |                      |enp0s8                 |          |
+        |  M  |            +-------------------+             |          |
+        |  E  |      enp0s3|                   |             |  host-c  |
+        |  N  +------------+      SWITCH       |             |          |
+        |  T  |            |                   |             |          |
+        |     |            +-------------------+             +----------+
+        |  V  |               |enp0s9       |enp0s10               |enp0s3
+        |  A  |               |             |                      |
+        |  G  |               |             |                      |
+        |  R  |               |enp0s8       |enp0s8                |
+        |  A  |        +----------+     +----------+               |
+        |  N  |        |          |     |          |               |
+        |  T  |  enp0s3|          |     |          |               |
+        |     +--------+  host-a  |     |  host-b  |               |
+        |     |        |          |     |          |               |
+        |     |        |          |     |          |               |
+        ++-+--+        +----------+     +----------+               |
+        | |                              |enp0s3                   |
+        | |                              |                         |
+        | +------------------------------+                         |
+        |                                                          |
+        |                                                          |
+        +----------------------------------------------------------+
 
 
 
+```
+## Network subnets
+```
+Network: Hosts-A
+Address:   192.168.4.0          11000000.10101000.00000100.0 0000000
+Netmask:   255.255.255.128 = 25 11111111.11111111.11111111.1 0000000
+=>
+Network:   192.168.4.0/25       11000000.10101000.00000100.0 0000000
+HostMin:   192.168.4.1          11000000.10101000.00000100.0 0000001
+HostMax:   192.168.4.126        11000000.10101000.00000100.0 1111110
+Broadcast: 192.168.4.127        11000000.10101000.00000100.0 1111111
+Hosts/Net: 126
+
+Network: Hosts-B
+Address:   192.168.2.0          11000000.10101000.0000001 0.00000000
+Netmask:   255.255.254.0 = 23   11111111.11111111.1111111 0.00000000
+=>
+Network:   192.168.2.0/23       11000000.10101000.0000001 0.00000000
+HostMin:   192.168.2.1          11000000.10101000.0000001 0.00000001
+HostMax:   192.168.3.254        11000000.10101000.0000001 1.11111110
+Broadcast: 192.168.3.255        11000000.10101000.0000001 1.11111111
+Hosts/Net: 510
+
+Network: Hub
+Address:   192.168.0.0          11000000.10101000.0000000 0.00000000
+Netmask:   255.255.254.0 = 23   11111111.11111111.1111111 0.00000000
+=>
+Network:   192.168.0.0/23       11000000.10101000.0000000 0.00000000
+HostMin:   192.168.0.1          11000000.10101000.0000000 0.00000001
+HostMax:   192.168.1.254        11000000.10101000.0000000 1.11111110
+Broadcast: 192.168.1.255        11000000.10101000.0000000 1.11111111
+Hosts/Net: 510
+
+Network: InterRouter
+Address:   192.168.4.128        11000000.10101000.00000100.100000 00
+Netmask:   255.255.255.252 = 30 11111111.11111111.11111111.111111 00
+=>
+Network:   192.168.4.128/30     11000000.10101000.00000100.100000 00
+HostMin:   192.168.4.129        11000000.10101000.00000100.100000 01
+HostMax:   192.168.4.130        11000000.10101000.00000100.100000 10
+Broadcast: 192.168.4.131        11000000.10101000.00000100.100000 11
+Hosts/Net: 2
 ```
 
 # Requirements
@@ -57,25 +101,28 @@ This repository contains the Vagrant files required to run the virtual lab envir
 # How-to
  - Install Virtualbox and Vagrant
  - Clone this repository
-`git clone https://github.com/dustnic/dncs-lab`
+`git clone https://github.com/as3ii/dncs-lab`
  - You should be able to launch the lab from within the cloned repo folder.
 ```
 cd dncs-lab
 [~/dncs-lab] vagrant up
 ```
 Once you launch the vagrant script, it may take a while for the entire topology to become available.
- - Verify the status of the 4 VMs
+ - Verify the status of the 5 VMs
  ```
- [dncs-lab]$ vagrant status                                                                                                                                                                
+ [dncs-lab]$ vagrant status
 Current machine states:
 
-router                    running (virtualbox)
+router-1                  running (virtualbox)
+router-2                  running (virtualbox)
 switch                    running (virtualbox)
 host-a                    running (virtualbox)
 host-b                    running (virtualbox)
+host-c                    running (virtualbox)
 ```
 - Once all the VMs are running verify you can log into all of them:
-`vagrant ssh router`
+`vagrant ssh router-1`
+`vagrant ssh router-2`
 `vagrant ssh switch`
 `vagrant ssh host-a`
 `vagrant ssh host-b`
@@ -87,7 +134,7 @@ The assignment consists in a simple piece of design work that students have to c
 The assignment deliverable consists of a Github repository containing:
 - the code necessary for the infrastructure to be replicated and instantiated
 - an updated README.md file where design decisions and experimental results are illustrated
-- an updated answers.yml file containing the details of 
+- an updated answers.yml file containing the details of
 
 ## Design Requirements
 - Hosts 1-a and 1-b are in two subnets (*Hosts-A* and *Hosts-B*) that must be able to scale up to respectively 108 and 502 usable addresses

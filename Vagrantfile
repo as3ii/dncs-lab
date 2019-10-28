@@ -10,7 +10,7 @@ Vagrant.configure("2") do |config|
     vb.customize ["modifyvm", :id, "--nicpromisc3", "allow-all"]
     vb.customize ["modifyvm", :id, "--nicpromisc4", "allow-all"]
     vb.customize ["modifyvm", :id, "--nicpromisc5", "allow-all"]
-    vb.cpus = 1
+    vb.customize ["modifyvm", :id, "--natnet1", "10.1.0.0/24"]
   end
   config.vm.define "router-1" do |router1|
     router1.vm.box = "ubuntu/bionic64"
@@ -44,7 +44,7 @@ Vagrant.configure("2") do |config|
     switch.vm.network "private_network", virtualbox__intnet: "broadcast_router-south-1", auto_config: false
     switch.vm.network "private_network", virtualbox__intnet: "broadcast_host_a", auto_config: false
     switch.vm.network "private_network", virtualbox__intnet: "broadcast_host_b", auto_config: false
-    switch.vm.provision "shell", path: "scripts/ubuntu/switch.sh"
+    switch.vm.provision "shell", path: "scripts/ubuntu/common.sh"
     switch.vm.provider "virtualbox" do |vb|
       vb.name = "switch"
       vb.cpus = 1
