@@ -8,3 +8,8 @@ ip addr add 10.0.0.1/23 dev enp0s8
 ip link set dev enp0s9 up
 ip addr add 10.0.4.130/25 dev enp0s9
 
+# enable routing function
+sysctl -w net.ipv4.ip_forward=1
+ip route add 10.0.2.0/23 via 10.0.4.129 dev enp0s9
+ip route add 10.0.4.0/25 via 10.0.4.129 dev enp0s9
+

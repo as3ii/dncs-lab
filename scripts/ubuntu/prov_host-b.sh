@@ -6,3 +6,5 @@ ip link set dev enp0s8 up
 ip link set dev enp0s8.20 up
 ip addr add 10.0.2.2/23 dev enp0s8.20
 
+ip route add default via 10.0.2.1
+
