@@ -47,35 +47,14 @@ This repository contains the Vagrant files required to run the virtual lab envir
 
 
 ```
-```
-Network: Hosts-A
-Network:   10.0.4.0/25
-HostMin:   10.0.4.1
-HostMax:   10.0.4.126
-Broadcast: 10.0.4.127
-Hosts/Net: 126
+## Subnet informations
+| Network name |    Network    |     Subnet      |  Host Min. |  Host Max. |  Broadcast | Total Hosts|
+|--------------|---------------|-----------------|------------|------------|------------|:----------:|
+|   Hosts-A    | 10.0.4.0/25   | 255.255.255.128 | 10.0.4.1   | 10.0.4.126 | 10.0.4.127 |     126    |
+|   Hosts-B    | 10.0.2.0/23   | 255.255.254.0   | 10.0.2.1   | 10.0.3.254 | 10.0.3.255 |     510    |
+|    Hub       | 10.0.0.0/23   | 255.255.254.0   | 10.0.0.1   | 10.0.1.254 | 10.0.1.255 |     510    |
+| Inter-Router | 10.0.4.128/30 | 255.255.255.252 | 10.0.4.129 | 10.0.4.130 | 10.0.4.131 |      2     |
 
-Network: Hosts-B
-Network:   10.0.2.0/23
-HostMin:   10.0.2.1
-HostMax:   10.0.3.254
-Broadcast: 10.0.3.255
-Hosts/Net: 510
-
-Network: Hub
-Network:   10.0.0.0/23
-HostMin:   10.0.0.1
-HostMax:   10.0.1.254
-Broadcast: 10.0.1.255
-Hosts/Net: 510
-
-Network: InterRouter
-Network:   10.0.4.128/30
-HostMin:   10.0.4.129
-HostMax:   10.0.4.130
-Broadcast: 10.0.4.131
-Hosts/Net: 2
-```
 
 # Requirements
  - Python 3
