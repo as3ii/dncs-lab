@@ -13,11 +13,11 @@ Vagrant.configure("2") do |config|
     vb.customize ["modifyvm", :id, "--natnet1", "10.1.0.0/24"]
   end
   config.vm.define "router-1" do |router1|
-    router1.vm.box = "ubuntu/bionic64"
+    router1.vm.box = "archlinux/archlinux"
     router1.vm.hostname = "router-1"
     router1.vm.network "private_network", virtualbox__intnet: "broadcast_router-south-1", auto_config: false
     router1.vm.network "private_network", virtualbox__intnet: "broadcast_router-inter", auto_config: false
-    router1.vm.provision "shell", path: "scripts/ubuntu/common.sh"
+    router1.vm.provision "shell", path: "scripts/arch/common.sh"
     router1.vm.provider "virtualbox" do |vb|
       vb.name = "router-1"
       vb.cpus = 1
@@ -26,11 +26,11 @@ Vagrant.configure("2") do |config|
     end
   end
   config.vm.define "router-2" do |router2|
-    router2.vm.box = "ubuntu/bionic64"
+    router2.vm.box = "archlinux/archlinux"
     router2.vm.hostname = "router-2"
     router2.vm.network "private_network", virtualbox__intnet: "broadcast_router-south-2", auto_config: false
     router2.vm.network "private_network", virtualbox__intnet: "broadcast_router-inter", auto_config: false
-    router2.vm.provision "shell", path: "scripts/ubuntu/common.sh"
+    router2.vm.provision "shell", path: "scripts/arch/common.sh"
     router2.vm.provider "virtualbox" do |vb|
       vb.name = "router-2"
       vb.cpus = 1
@@ -39,12 +39,12 @@ Vagrant.configure("2") do |config|
     end
   end
   config.vm.define "switch" do |switch|
-    switch.vm.box = "ubuntu/bionic64"
+    switch.vm.box = "archlinux/archlinux"
     switch.vm.hostname = "switch"
     switch.vm.network "private_network", virtualbox__intnet: "broadcast_router-south-1", auto_config: false
     switch.vm.network "private_network", virtualbox__intnet: "broadcast_host_a", auto_config: false
     switch.vm.network "private_network", virtualbox__intnet: "broadcast_host_b", auto_config: false
-    switch.vm.provision "shell", path: "scripts/ubuntu/common.sh"
+    switch.vm.provision "shell", path: "scripts/arch/common.sh"
     switch.vm.provider "virtualbox" do |vb|
       vb.name = "switch"
       vb.cpus = 1
@@ -53,10 +53,10 @@ Vagrant.configure("2") do |config|
     end
   end
   config.vm.define "host-a" do |hosta|
-    hosta.vm.box = "ubuntu/bionic64"
+    hosta.vm.box = "archlinux/archlinux"
     hosta.vm.hostname = "host-a"
     hosta.vm.network "private_network", virtualbox__intnet: "broadcast_host_a", auto_config: false
-    hosta.vm.provision "shell", path: "scripts/ubuntu/common.sh"
+    hosta.vm.provision "shell", path: "scripts/arch/common.sh"
     hosta.vm.provider "virtualbox" do |vb|
       vb.name = "host-a"
       vb.cpus = 1
@@ -65,10 +65,10 @@ Vagrant.configure("2") do |config|
     end
   end
   config.vm.define "host-b" do |hostb|
-    hostb.vm.box = "ubuntu/bionic64"
+    hostb.vm.box = "archlinux/archlinux"
     hostb.vm.hostname = "host-b"
     hostb.vm.network "private_network", virtualbox__intnet: "broadcast_host_b", auto_config: false
-    hostb.vm.provision "shell", path: "scripts/ubuntu/common.sh"
+    hostb.vm.provision "shell", path: "scripts/arch/common.sh"
     hostb.vm.provider "virtualbox" do |vb|
       vb.name = "host-b"
       vb.cpus = 1
@@ -77,10 +77,10 @@ Vagrant.configure("2") do |config|
     end
   end
   config.vm.define "host-c" do |hostc|
-    hostc.vm.box = "ubuntu/bionic64"
+    hostc.vm.box = "archlinux/archlinux"
     hostc.vm.hostname = "host-c"
     hostc.vm.network "private_network", virtualbox__intnet: "broadcast_router-south-2", auto_config: false
-    hostc.vm.provision "shell", path: "scripts/ubuntu/common.sh"
+    hostc.vm.provision "shell", path: "scripts/arch/common.sh"
     hostc.vm.provider "virtualbox" do |vb|
       vb.name = "host-c"
       vb.cpus = 1
