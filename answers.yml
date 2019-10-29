@@ -6,13 +6,13 @@ GitHubUrl: https://github.com/as3ii/dncs-lab
 Subnets:
   HostsA:
     RequiredAddresses: 108
-    SubnetAddress: YourHostsASubnetAddress
-    SubnetPrefixLength: YourHostsASubnetPrefixLength
+    SubnetAddress: 10.0.4.0
+    SubnetPrefixLength: 25
   HostsB:
     RequiredAddresses: 502
-    SubnetAddress: YourHostsBSubnetAddress
-    SubnetPrefixLength: YourHostsBSubnetPrefixLength
+    SubnetAddress: 10.0.2.0
+    SubnetPrefixLength: 23
   Hub:
     RequiredAddresses: 418
-    SubnetAddress: YourHubSubnetAddress
-    SubnetPrefixLength: YourHubSubnetPrefixLength
+    SubnetAddress: 10.0.0.0
+    SubnetPrefixLength: 23
