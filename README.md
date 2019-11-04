@@ -47,15 +47,6 @@ This repository contains the Vagrant files required to run the virtual lab envir
 
 
 ```
-## Subnet informations
-| Network name |    Network    |     Subnet      |  Host Min. |  Host Max. |  Broadcast | Total Hosts|
-|--------------|---------------|-----------------|------------|------------|------------|:----------:|
-|   Hosts-A    | 10.0.4.0/25   | 255.255.255.128 | 10.0.4.1   | 10.0.4.126 | 10.0.4.127 |     126    |
-|   Hosts-B    | 10.0.2.0/23   | 255.255.254.0   | 10.0.2.1   | 10.0.3.254 | 10.0.3.255 |     510    |
-|    Hub       | 10.0.0.0/23   | 255.255.254.0   | 10.0.0.1   | 10.0.1.254 | 10.0.1.255 |     510    |
-| Inter-Router | 10.0.4.128/30 | 255.255.255.252 | 10.0.4.129 | 10.0.4.130 | 10.0.4.131 |      2     |
-
-
 # Requirements
  - Python 3
  - 10GB disk storage
@@ -130,4 +121,23 @@ The assignment deliverable consists of a Github repository containing:
 
 
 # Design
-[ Your work goes here ]
+
+## Subnet informations
+| Network name |    Network    |     Netmask     |  Host Min. |  Host Max. |  Broadcast | Total Hosts|
+|--------------|---------------|-----------------|------------|------------|------------|:----------:|
+|   Hosts-A    | 10.0.4.0/25   | 255.255.255.128 | 10.0.4.1   | 10.0.4.126 | 10.0.4.127 |     126    |
+|   Hosts-B    | 10.0.2.0/23   | 255.255.254.0   | 10.0.2.1   | 10.0.3.254 | 10.0.3.255 |     510    |
+|    Hub       | 10.0.0.0/23   | 255.255.254.0   | 10.0.0.1   | 10.0.1.254 | 10.0.1.255 |     510    |
+| Inter-Router | 10.0.4.128/30 | 255.255.255.252 | 10.0.4.129 | 10.0.4.130 | 10.0.4.131 |      2     |
+
+I chose to use 10.x.y.z/8 as base ip's range because it is the commonest range for big private network, and I ordered the subnet from
+the biggest to the smallest with the goal of not leaving unused ips between the subnet.
+The Netmasks are sized to be as small as possible respecting the specifications.
+
+## Test
+To test the reachability of host-c from host-a and host-b, run:
+`vagrant ssh host-a -c "/vagrant/scripts/test_host-a.sh`
+`vagrant ssh host-b -c "/vagrant/scripts/test_host-b.sh`
+These test scripts will test the reachability of all the routers and host-c, check that router-1 will block the connection between host-a
+and host-b, and will try to download the html page hosted on Nginx in the container running in Docker over host-c.
+
