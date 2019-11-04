@@ -137,10 +137,10 @@ The Netmasks are sized to be as small as possible respecting the specifications.
 ## Test
 To test the reachability of host-c from host-a and host-b, run:
 ```
-vagrant ssh host-a -c "/vagrant/scripts/test_host-a.sh
+vagrant ssh host-a -c "/vagrant/scripts/test_host-a.sh"
 ```
 ```
-vagrant ssh host-b -c "/vagrant/scripts/test_host-b.sh
+vagrant ssh host-b -c "/vagrant/scripts/test_host-b.sh"
 ```
 These test scripts will test the reachability of all the routers and host-c, check that router-1 will block the connection between host-a
 and host-b, and will try to download the html page hosted on Nginx in the container running in Docker over host-c.
