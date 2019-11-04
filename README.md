@@ -145,3 +145,5 @@ vagrant ssh host-b -c "/vagrant/scripts/test_host-b.sh"
 These test scripts will test the reachability of all the routers and host-c, check that router-1 will block the connection between host-a
 and host-b, and will try to download the html page hosted on Nginx in the container running in Docker over host-c.
 
+**NOTE:** if you run `vagrant halt` and then you try to run `vagrant up`, the entire system won't work (due to the use of non-permanent commands)
+
